@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import Home from './Assignments/assignmentOne/Home';
 
-function App() {
-  const [count, setCount] = useState(0)
+const { Header, Content, Footer } = Layout;
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const items = [
+  {
+    label: 'AssignmentOne',
+    key: '1',
+  },
+  {
+    label: 'AssignmentTwo',
+    key: '2',
+  }
+]
+
+const Styles= {
+  NewBody: {
+    minHeight: '100vh',
+  }
 }
 
-export default App
+const App: React.FC = () => {
+  const [SelectedKeys, setSelectedKeys] = React.useState<string>('1')
+  
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
+  return (
+    <Layout style={Styles.NewBody}>
+      <Header style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="demo-logo" />
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={[SelectedKeys]}
+          items={items}
+          style={{ flex: 1, minWidth: 0 }}
+          onClick={(e) => {
+            setSelectedKeys(e.key);
+          }}
+        />
+      </Header>
+      <Content style={{ padding: '0 48px' }}>
+      <Breadcrumb style={{ margin: '16px 0' }}
+        items={[
+          {
+            title: SelectedKeys === '1' ? 'AssignmentOne' : 'AssignmentTwo',
+          }
+        ]}
+      />
+        <div
+          style={{
+            background: colorBgContainer,
+            minHeight: 750,
+            padding: 24,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          {SelectedKeys === '1' ? <Home /> : null}
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>
+        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+      </Footer>
+    </Layout>
+  );
+};
+
+export default App;

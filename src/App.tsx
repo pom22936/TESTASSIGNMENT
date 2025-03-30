@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import Home from './Assignments/assignmentOne/Home';
+import HomeTest2 from './Assignments/assignmentTwo/HomeTest2';
 
 const { Header, Content, Footer } = Layout;
 
@@ -60,6 +61,7 @@ const App: React.FC = () => {
           }}
         >
           {SelectedKeys === '1' ? <Home /> : null}
+          {SelectedKeys === '2' ? <HomeTest2 /> : null}
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>

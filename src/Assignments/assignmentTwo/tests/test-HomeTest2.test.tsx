@@ -4,16 +4,16 @@ import { render, screen , waitFor } from "@testing-library/react"
 import "@testing-library/jest-dom"
 import { describe, test, expect, vi } from "vitest"
 import HomeTest2 from "../HomeTest2"
-import { mockUsers } from "./test-convertData.test"
-import axios from "axios"
+// import { mockUsers } from "./test-convertData.test"
+// import axios from "axios"
 
 // Mock axios
 vi.mock("axios")
-const mockedAxios = axios as vi.Mocked<typeof axios>
+// const mockedAxios = axios as vi.Mocked<typeof axios>
 
 describe("test HomeTest2", () => {
     test("renders department data correctly", async () => {
-        mockedAxios.get.mockResolvedValueOnce({ data: { users: mockUsers } })
+        // mockedAxios.get.mockResolvedValueOnce({ data: { users: mockUsers } })
 
         render(<HomeTest2 />)
 
